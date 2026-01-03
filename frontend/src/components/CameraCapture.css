@@ -1,0 +1,100 @@
+.camera-capture {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.camera-container {
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  background: #f9f9f9;
+}
+
+.camera-placeholder {
+  text-align: center;
+  padding: 2rem;
+}
+
+.camera-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.video-container {
+  position: relative;
+}
+
+.camera-video {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.camera-controls {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.camera-instruction {
+  text-align: center;
+  margin-top: 0.5rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #0056b3;
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: #545b62;
+}
+
+.btn-capture {
+  background: #28a745;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.btn-capture:hover {
+  background: #1e7e34;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.upload-section {
+  text-align: center;
+  padding: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.file-input {
+  margin-top: 0.5rem;
+} 

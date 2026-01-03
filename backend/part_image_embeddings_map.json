@@ -1,0 +1,44 @@
+[
+  {
+    "part_id": 1,
+    "material_number": "IMG_3701",
+    "description": "Part IMG_3701",
+    "image_path": "images/6/IMG_3701.jpg",
+    "feature_index": 0
+  },
+  {
+    "part_id": 2,
+    "material_number": "IMG_3706",
+    "description": "Part IMG_3706",
+    "image_path": "images/1/IMG_3706.jpg",
+    "feature_index": 1
+  },
+  {
+    "part_id": 3,
+    "material_number": "IMG_3703",
+    "description": "Part IMG_3703",
+    "image_path": "images/4/IMG_3703.jpg",
+    "feature_index": 2
+  },
+  {
+    "part_id": 4,
+    "material_number": "IMG_3704",
+    "description": "Part IMG_3704",
+    "image_path": "images/3/IMG_3704.jpg",
+    "feature_index": 3
+  },
+  {
+    "part_id": 5,
+    "material_number": "IMG_3705",
+    "description": "Part IMG_3705",
+    "image_path": "images/2/IMG_3705.jpg",
+    "feature_index": 4
+  },
+  {
+    "part_id": 6,
+    "material_number": "IMG_3702",
+    "description": "Part IMG_3702",
+    "image_path": "images/5/IMG_3702.jpg",
+    "feature_index": 5
+  }
+]

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .camera-container {
+            border: 2px solid #ccc;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        video {
+            max-width: 100%;
+            border: 1px solid #ddd;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .error {
+            color: red;
+            margin: 10px 0;
+        }
+        .success {
+            color: green;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Camera Access Test</h1>
+    
+    <div class="camera-container">
+        <h2>Test Camera Access</h2>
+        <div id="status">Click "Start Camera" to test</div>
+        <button onclick="startCamera()">Start Camera</button>
+        <button onclick="stopCamera()">Stop Camera</button>
+        <br><br>
+        <video id="video" autoplay playsinline muted style="display: none;"></video>
+    </div>
+
+    <div class="camera-container">
+        <h2>Browser Info</h2>
+        <div id="browser-info"></div>
+    </div>
+
+    <script>
+        let stream = null;
+        const video = document.getElementById('video');
+        const status = document.getElementById('status');
+        const browserInfo = document.getElementById('browser-info');
+
+        // Display browser info
+        browserInfo.innerHTML = `
+            <p><strong>User Agent:</strong> ${navigator.userAgent}</p>
+            <p><strong>Protocol:</strong> ${window.location.protocol}</p>
+            <p><strong>Host:</strong> ${window.location.host}</p>
+            <p><strong>MediaDevices Available:</strong> ${!!navigator.mediaDevices}</p>
+            <p><strong>getUserMedia Available:</strong> ${!!navigator.mediaDevices?.getUserMedia}</p>
+        `;
+
+        async function startCamera() {
+            try {
+                status.innerHTML = '<span class="success">Requesting camera access...</span>';
+                
+                if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                    throw new Error('getUserMedia not supported');
+                }
+
+                stream = await navigator.mediaDevices.getUserMedia({
+                    video: {
+                        facingMode: 'environment',
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 }
+                    }
+                });
+
+                video.srcObject = stream;
+                video.style.display = 'block';
+                status.innerHTML = '<span class="success">✅ Camera started successfully!</span>';
+                
+            } catch (error) {
+                console.error('Camera error:', error);
+                status.innerHTML = `<span class="error">❌ Camera error: ${error.message}</span>`;
+                
+                if (error.name === 'NotAllowedError') {
+                    status.innerHTML += '<br><span class="error">Permission denied. Please allow camera access.</span>';
+                } else if (error.name === 'NotFoundError') {
+                    status.innerHTML += '<br><span class="error">No camera found on this device.</span>';
+                } else if (error.name === 'NotSupportedError') {
+                    status.innerHTML += '<br><span class="error">Camera not supported in this browser.</span>';
+                }
+            }
+        }
+
+        function stopCamera() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                stream = null;
+                video.srcObject = null;
+                video.style.display = 'none';
+                status.innerHTML = 'Camera stopped';
+            }
+        }
+
+        // Test if we're in a secure context
+        if (!window.isSecureContext) {
+            status.innerHTML = '<span class="error">⚠️ Not in a secure context. Camera may not work.</span>';
+        }
+    </script>
+</body>
+</html> 
