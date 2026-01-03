@@ -73,4 +73,12 @@ uploads/
 
 # Temporary files
 *.tmp
-*.temp 
+*.temp
+
+# SSL/TLS certificates and keys
+*.pem
+*.key
+*.cert
+*.crt
+*.p12
+*.pfx 
